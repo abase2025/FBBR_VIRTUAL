@@ -6,6 +6,7 @@
     <title>Visualizador de PDF - Odonto_FBBR</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .pdf-container {
             position: relative;
@@ -29,7 +30,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background-color: var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
             border-radius: 10px 10px 0 0;
         }
@@ -102,38 +103,25 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="images/logo_odonto_fbbr.jpg" alt="Logo Odonto_FBBR">
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-button">
-                    <i class="fas fa-home"></i>
-                    <span>Início</span>
-                </a></li>
-                <li><a href="especialidades.html" class="nav-button">
-                    <i class="fas fa-book-medical"></i>
-                    <span>Especialidades</span>
-                </a></li>
-                <li><a href="resumos.html" class="nav-button">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Resumos</span>
-                </a></li>
-                <li><a href="questoes.html" class="nav-button">
-                    <i class="fas fa-question-circle"></i>
-                    <span>Questões</span>
-                </a></li>
-                <li><a href="contato.html" class="nav-button">
-                    <i class="fas fa-address-card"></i>
-                    <span>Contato</span>
-                </a></li>
-            </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
+                </a>
             </div>
-        </nav>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i>Início</a></li>
+                    <li><a href="especialidades.html"><i class="fas fa-tooth"></i>Especialidades</a></li>
+                    <li><a href="resumos.html"><i class="fas fa-book"></i>Resumos</a></li>
+                    <li><a href="questoes.html"><i class="fas fa-question-circle"></i>Questões</a></li>
+                    <li><a href="contato.html"><i class="fas fa-envelope"></i>Contato</a></li>
+                </ul>
+                <div class="mobile-menu-icon">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main>

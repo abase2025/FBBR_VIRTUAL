@@ -503,6 +503,31 @@
             transition: all 0.3s ease;
         }
         
+        /* Mensagens de feedback do formulário */
+        .form-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .form-success {
+            background-color: rgba(67, 206, 162, 0.1);
+            border: 1px solid rgba(67, 206, 162, 0.5);
+            color: #2a9d8f;
+        }
+        
+        .form-error {
+            background-color: rgba(225, 77, 77, 0.1);
+            border: 1px solid rgba(225, 77, 77, 0.5);
+            color: #e63946;
+        }
+        
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #e63946;
+        }
+        
         /* Responsividade */
         @media (max-width: 992px) {
             .contato-grid {
@@ -578,15 +603,15 @@
     </header>
 
     <main>
-        <a href="index.html" class="btn btn-primary return-button">
-            <i class="fas fa-arrow-left"></i> Voltar ao Início
+        <a href="index.html" class="btn-voltar">
+            <i class="fas fa-arrow-left"></i> Voltar
         </a>
         
         <section class="contato-page">
             <div class="contato-container">
                 <div class="contato-header">
                     <h1>Entre em Contato</h1>
-                    <p>Tire suas dúvidas, envie sugestões ou solicite mais materiais para estudo. Estamos aqui para ajudar você em sua jornada acadêmica.</p>
+                    <p>Estamos aqui para ajudar! Envie-nos uma mensagem e responderemos o mais breve possível.</p>
                 </div>
                 
                 <div class="contato-grid">
@@ -596,26 +621,39 @@
                             <p>Preencha o formulário abaixo e entraremos em contato o mais breve possível.</p>
                         </div>
                         
-                        <form id="contato-form">
+                        <!-- Mensagens de feedback -->
+                        <div id="formSuccess" class="form-message form-success">
+                            <p><i class="fas fa-check-circle"></i> Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.</p>
+                        </div>
+                        
+                        <div id="formErrors" class="form-message form-error"></div>
+                        
+                        <form id="contactForm" action="https://formsubmit.co/rlambaia2023@gmail.com" method="POST">
                             <div class="form-group">
                                 <label for="nome">Nome Completo</label>
-                                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
                             </div>
                             
                             <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Digite seu email">
                             </div>
                             
                             <div class="form-group">
                                 <label for="assunto">Assunto</label>
-                                <input type="text" id="assunto" name="assunto" placeholder="Digite o assunto" required>
+                                <input type="text" id="assunto" name="assunto" placeholder="Digite o assunto">
                             </div>
                             
                             <div class="form-group">
                                 <label for="mensagem">Mensagem</label>
-                                <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows="5" required></textarea>
+                                <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem"></textarea>
                             </div>
+                            
+                            <!-- Campos ocultos para FormSubmit.co -->
+                            <input type="hidden" name="_subject" value="Nova mensagem do site Odonto_FBBR">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://seusite.github.io/odonto_fbbr/obrigado.html">
+                            <input type="hidden" name="_template" value="table">
                             
                             <div class="form-submit">
                                 <button type="submit" class="btn-submit">
@@ -626,72 +664,68 @@
                     </div>
                     
                     <div class="contato-info-container">
-                        <div>
-                            <div class="contato-info-header">
-                                <h3>Informações de Contato</h3>
-                                <p>Entre em contato conosco através dos canais abaixo.</p>
+                        <div class="contato-info-header">
+                            <h3>Informações de Contato</h3>
+                            <p>Você pode nos contatar através dos seguintes meios:</p>
+                        </div>
+                        
+                        <div class="info-items">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Endereço</h4>
+                                    <p>Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</p>
+                                </div>
                             </div>
                             
-                            <div class="info-items">
-                                <div class="info-item">
-                                    <div class="info-icon">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <h4>E-mail</h4>
-                                        <p>vestibular@atmos.edu.br</p>
-                                    </div>
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-phone-alt"></i>
                                 </div>
-                                
-                                <div class="info-item">
-                                    <div class="info-icon">
-                                        <i class="fas fa-phone-alt"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <h4>Telefones</h4>
-                                        <p>75 3017-0879 | 75 98823-4776</p>
-                                    </div>
+                                <div class="info-content">
+                                    <h4>Telefone</h4>
+                                    <p>(75) 3017-0879</p>
+                                    <p>(75) 98823-4776</p>
                                 </div>
-                                
-                                <div class="info-item">
-                                    <div class="info-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <h4>Endereço</h4>
-                                        <p>Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</p>
-                                    </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-envelope"></i>
                                 </div>
-                                
-                                <div class="info-item">
-                                    <div class="info-icon">
-                                        <i class="fas fa-clock"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <h4>Horário de Atendimento</h4>
-                                        <p>Segunda a Sexta: 8h às 18h</p>
-                                    </div>
+                                <div class="info-content">
+                                    <h4>Email</h4>
+                                    <p>vestibular@atmos.edu.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Horário de Atendimento</h4>
+                                    <p>Segunda a Sexta: 8h às 18h</p>
+                                    <p>Sábado: 8h às 12h</p>
                                 </div>
                             </div>
                         </div>
                         
-                        <div>
-                            <h4>Siga-nos nas Redes Sociais</h4>
-                            <div class="social-links">
-                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                            </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Seção de Créditos e Equipe -->
-                <div class="creditos-section">
-                    <div class="creditos-header" style="text-align: center;">
-                        <h2 style="display: inline-block; position: relative; text-align: center;">Créditos e Equipe</h2>
-                        <p style="text-align: center;">Conheça os profissionais responsáveis pelo desenvolvimento desta plataforma educacional.</p>
+                <section class="creditos-section">
+                    <div class="creditos-header">
+                        <h2>Créditos e Equipe</h2>
+                        <p>Conheça os profissionais responsáveis pelo desenvolvimento desta plataforma educacional.</p>
                     </div>
                     
                     <div class="creditos-grid">
@@ -700,8 +734,7 @@
                                 <i class="fas fa-user-graduate"></i>
                             </div>
                             <h3>Daniella Carvalho Gomes de Cerqueira</h3>
-                            <p>Enfa.danicarvalho@me.com</p>
-                            <p class="cargo">A sua ideia foi o start. Gratidão</p>
+                            <p>A sua ideia foi o start. Gratidão</p>
                             <p class="cargo">Coordenação dos cursos de saúde FBBR</p>
                         </div>
                         
@@ -718,7 +751,7 @@
                                 <i class="fas fa-chalkboard-teacher"></i>
                             </div>
                             <h3>Prof. Eric</h3>
-                            <p class="cargo">Suas dicas deram vida ao projeto</p>
+                            <p>Suas dicas deram vida ao projeto</p>
                             <p class="cargo">Fundamental pelas dicas e apoio e incentivos</p>
                         </div>
                         
@@ -730,27 +763,23 @@
                             <p class="cargo">Desenvolvedor e Estudante da Instituição em Odontologia</p>
                         </div>
                     </div>
-                </div>
+                </section>
                 
-                <!-- Mapa da Localização -->
-                <div class="mapa-section">
-                    <div class="mapa-header" style="text-align: center;">
-                        <h2 style="display: inline-block; position: relative; text-align: center;">Nossa Localização</h2>
-                        <p style="text-align: center;">Venha nos visitar e conhecer nossa instituição.</p>
+                <section class="mapa-section">
+                    <div class="mapa-header">
+                        <h2>Nossa Localização</h2>
+                        <p>Venha nos visitar e conhecer nossa instituição.</p>
                     </div>
                     
                     <div class="mapa-container">
-                        <div class="mapa-placeholder">
-                            <p><i class="fas fa-map-marker-alt"></i> Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</p>
-                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.3105463598493!2d-39.10999548464281!3d-12.671429991069096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x715c7b3f9f2c593%3A0x9f0f0e9f8a2d160d!2sAv.%20Alberto%20Passos%2C%20294%20-%20Centro%2C%20Cruz%20das%20Almas%20-%20BA%2C%2044380-000!5e0!3m2!1spt-BR!2sbr!4v1653594812345!5m2!1spt-BR!2sbr" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     
-                    <!-- Informações de Contato Detalhadas -->
                     <div class="contato-detalhes">
                         <div class="contato-bloco">
                             <h3>CONTATO</h3>
                             <ul class="contato-info-list">
-                                <li><i class="fas fa-phone-alt"></i> 75 3017-0879</li>
+                                <li><i class="fas fa-phone"></i> 75 3017-0879</li>
                                 <li><i class="fas fa-mobile-alt"></i> 75 98823-4776</li>
                                 <li><i class="fas fa-envelope"></i> vestibular@atmos.edu.br</li>
                                 <li><i class="fas fa-map-marker-alt"></i> Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</li>
@@ -774,22 +803,14 @@
                             <h3>REDES SOCIAIS</h3>
                             <p class="social-header">Siga nossas redes sociais</p>
                             <div class="social-grid">
-                                <a href="#" class="social-item">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="social-item">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#" class="social-item">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="social-item">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
+                                <a href="#" class="social-item"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-item"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-item"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-item"><i class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         </section>
     </main>
@@ -799,9 +820,7 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
-                    <p>Plataforma Gratuita de Estudos em Odontologia</p>
                 </div>
-                
                 <div class="footer-links">
                     <h3>Links Rápidos</h3>
                     <ul>
@@ -812,29 +831,26 @@
                         <li><a href="contato.html">Contato</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-credits">
-                    <h3>Créditos</h3>
-                    <ul>
-                        <li>@Daniella Carvalho Gomes de Cerqueira</li>
-                        <li>Enfa.danicarvalho@me.com</li>
-                        <li>Coordenação dos cursos de saúde FBBR</li>
-                        <li>@coordenador: Felipe</li>
-                        <li>@Pro.Eric: fundamental pelas dicas e apoio</li>
-                        <li>@Harrison Costa, Desenvolvedor e Estudante da Instituição em Odonto</li>
-                    </ul>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-envelope"></i> vestibular@atmos.edu.br</p>
+                    <p><i class="fas fa-phone"></i> (75) 3017-0879</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA</p>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2025 Odonto_FBBR. Todos os direitos reservados.</p>
-                <a href="#" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Voltar ao topo
-                </a>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/form-validation.js"></script>
 </body>
 </html>
