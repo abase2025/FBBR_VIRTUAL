@@ -437,7 +437,7 @@
         
         <section class="questoes-page">
             <div class="container" style="text-align: center;">
-                <h1 style="display: inline-block; position: relative; text-align: center;">Odonto_FBBR_Responde</h1>
+                <h1 style="display: inline-block; position: relative; text-align: center; margin: 0 auto;">Odonto_FBBR_Responde</h1>
                 <p class="section-description">Tire suas dúvidas sobre odontologia e receba respostas baseadas em materiais científicos e apostilas.</p>
                 
                 <div class="questoes-container">
@@ -492,26 +492,26 @@
                         
                         <div class="filtro-botoes">
                             <button class="btn-filtrar" id="btn-filtrar">
-                                <i class="fas fa-search"></i> Buscar
+                                <i class="fas fa-search"></i> Filtrar
                             </button>
                             <button class="btn-limpar" id="btn-limpar">
-                                <i class="fas fa-times"></i> Limpar Filtros
+                                <i class="fas fa-times"></i> Limpar
                             </button>
                         </div>
                     </div>
                     
-                    <!-- Área de Resposta -->
-                    <div class="resposta-container">
+                    <!-- Área de resposta -->
+                    <div class="resposta-container" id="resposta-container">
                         <div class="resposta-header">
                             <img src="images/assistente-virtual.jpg" alt="FBBR_IA">
                             <div class="resposta-header-info">
                                 <h3>FBBR_IA</h3>
-                                <p>Assistente Virtual de Odontologia</p>
+                                <p>Assistente virtual especializado em odontologia</p>
                             </div>
                         </div>
                         
                         <div class="pergunta-area">
-                            <textarea id="pergunta-input" placeholder="Digite sua pergunta sobre odontologia aqui..."></textarea>
+                            <textarea id="pergunta-textarea" placeholder="Digite sua pergunta sobre odontologia..."></textarea>
                             <div class="pergunta-botao">
                                 <button class="btn-perguntar" id="btn-perguntar">
                                     <i class="fas fa-paper-plane"></i> Enviar Pergunta
@@ -524,94 +524,25 @@
                             <p>Buscando resposta...</p>
                         </div>
                         
-                        <div class="resposta-vazia" id="resposta-vazia">
-                            <i class="fas fa-comment-dots"></i>
-                            <p>Faça uma pergunta para receber uma resposta baseada nos materiais de estudo.</p>
-                        </div>
-                        
                         <div class="resposta-conteudo" id="resposta-conteudo" style="display: none;">
                             <div class="resposta-titulo">
-                                <i class="fas fa-lightbulb"></i>
+                                <i class="fas fa-robot"></i>
                                 <h3>Resposta</h3>
                             </div>
-                            
                             <div class="resposta-texto" id="resposta-texto">
                                 <!-- Conteúdo da resposta será inserido aqui -->
                             </div>
-                            
                             <div class="resposta-referencias" id="resposta-referencias">
-                                <h4>Referências:</h4>
-                                <ul id="lista-referencias">
-                                    <!-- Referências serão inseridas aqui -->
-                                </ul>
+                                <!-- Referências serão inseridas aqui -->
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Questões Recentes -->
+                    <!-- Questões recentes -->
                     <div class="questoes-recentes">
-                        <h3>Questões Frequentes</h3>
-                        
-                        <div class="questoes-lista">
-                            <!-- Questão 1 -->
-                            <div class="questao-card" data-pergunta="Quais são as principais características da cárie dentária?">
-                                <span class="questao-materia">Cariologia</span>
-                                <h4 class="questao-titulo">Características da cárie dentária</h4>
-                                <p class="questao-preview">Quais são as principais características da cárie dentária e como identificá-la em estágios iniciais?</p>
-                                <div class="questao-footer">
-                                    <span>Fonte: <a href="visualizador.html?pdf=cariologia.pdf&title=Cariologia">Apostila de Cariologia</a></span>
-                                </div>
-                            </div>
-                            
-                            <!-- Questão 2 -->
-                            <div class="questao-card" data-pergunta="Como é feito o diagnóstico da doença periodontal?">
-                                <span class="questao-materia">Periodontia</span>
-                                <h4 class="questao-titulo">Diagnóstico periodontal</h4>
-                                <p class="questao-preview">Como é feito o diagnóstico da doença periodontal e quais são os principais parâmetros clínicos avaliados?</p>
-                                <div class="questao-footer">
-                                    <span>Fonte: <a href="visualizador.html?pdf=Periodontia-CompletoNovaClassificação.pdf&title=Periodontia - Completo Nova Classificação">Apostila de Periodontia</a></span>
-                                </div>
-                            </div>
-                            
-                            <!-- Questão 3 -->
-                            <div class="questao-card" data-pergunta="Quais são as indicações para tratamento endodôntico?">
-                                <span class="questao-materia">Endodontia</span>
-                                <h4 class="questao-titulo">Indicações para endodontia</h4>
-                                <p class="questao-preview">Quais são as principais indicações para tratamento endodôntico e como avaliar a necessidade desse procedimento?</p>
-                                <div class="questao-footer">
-                                    <span>Fonte: <a href="visualizador.html?pdf=Endodontia-Introduçãoeanatomiainternadosdentes.pdf&title=Endodontia - Introdução e Anatomia Interna dos Dentes">Apostila de Endodontia</a></span>
-                                </div>
-                            </div>
-                            
-                            <!-- Questão 4 -->
-                            <div class="questao-card" data-pergunta="Como realizar o isolamento absoluto em dentes posteriores?">
-                                <span class="questao-materia">Isolamento</span>
-                                <h4 class="questao-titulo">Isolamento absoluto</h4>
-                                <p class="questao-preview">Qual é a técnica correta para realizar o isolamento absoluto em dentes posteriores e quais materiais são necessários?</p>
-                                <div class="questao-footer">
-                                    <span>Fonte: <a href="visualizador.html?pdf=isolamentos.pdf&title=Isolamentos">Apostila de Isolamento</a></span>
-                                </div>
-                            </div>
-                            
-                            <!-- Questão 5 -->
-                            <div class="questao-card" data-pergunta="Quais são as propriedades ideais dos materiais restauradores?">
-                                <span class="questao-materia">Materiais</span>
-                                <h4 class="questao-titulo">Materiais restauradores</h4>
-                                <p class="questao-preview">Quais são as propriedades ideais que os materiais restauradores devem apresentar e como escolher o material adequado?</p>
-                                <div class="questao-footer">
-                                    <span>Fonte: <a href="visualizador.html?pdf=MATERIAISODONTOLOGICOS-MATERIAISRESTAURADORES.pdf&title=Materiais Odontológicos - Materiais Restauradores">Apostila de Materiais</a></span>
-                                </div>
-                            </div>
-                            
-                            <!-- Questão 6 -->
-                            <div class="questao-card" data-pergunta="Como identificar os diferentes tipos de maloclusão?">
-                                <span class="questao-materia">Ortodontia</span>
-                                <h4 class="questao-titulo">Classificação de maloclusões</h4>
-                                <p class="questao-preview">Como identificar e classificar os diferentes tipos de maloclusão segundo Angle e quais são suas características?</p>
-                                <div class="questao-footer">
-                                    <span>Fonte: <a href="visualizador.html?pdf=ORTODONTIA.pdf&title=Ortodontia">Apostila de Ortodontia</a></span>
-                                </div>
-                            </div>
+                        <h3>Questões Recentes</h3>
+                        <div class="questoes-lista" id="questoes-lista">
+                            <!-- Questões serão inseridas aqui -->
                         </div>
                     </div>
                 </div>
@@ -623,10 +554,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
-                    <p>Plataforma Gratuita de Estudos em Odontologia</p>
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Logo Odonto_FBBR">
                 </div>
-                
                 <div class="footer-links">
                     <h3>Links Rápidos</h3>
                     <ul>
@@ -637,150 +566,20 @@
                         <li><a href="contato.html">Contato</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-credits">
-                    <h3>Créditos</h3>
-                    <ul>
-                        <li>@Daniella Carvalho Gomes de Cerqueira</li>
-                        <li>Enfa.danicarvalho@me.com</li>
-                        <li>Coordenação dos cursos de saúde FBBR</li>
-                        <li>@coordenador: Felipe</li>
-                        <li>@Pro.Eric: fundamental pelas dicas e apoio</li>
-                        <li>@Harrison Costa, Desenvolvedor e Estudante da Instituição em Odonto</li>
-                    </ul>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-phone"></i> 75 3017-0879 / 75 98823-4776</p>
+                    <p><i class="fas fa-envelope"></i> vestibular@atmos.edu.br</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</p>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2025 Odonto_FBBR. Todos os direitos reservados.</p>
-                <a href="#" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Voltar ao topo
-                </a>
             </div>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Elementos
-            const perguntaInput = document.getElementById('pergunta-input');
-            const btnPerguntar = document.getElementById('btn-perguntar');
-            const respostaLoading = document.getElementById('resposta-loading');
-            const respostaVazia = document.getElementById('resposta-vazia');
-            const respostaConteudo = document.getElementById('resposta-conteudo');
-            const respostaTexto = document.getElementById('resposta-texto');
-            const listaReferencias = document.getElementById('lista-referencias');
-            const questaoCards = document.querySelectorAll('.questao-card');
-            
-            // Filtros
-            const filtroMateria = document.getElementById('filtro-materia');
-            const filtroTema = document.getElementById('filtro-tema');
-            const filtroBusca = document.getElementById('filtro-busca');
-            const btnFiltrar = document.getElementById('btn-filtrar');
-            const btnLimpar = document.getElementById('btn-limpar');
-            
-            // Função para processar a pergunta
-            function processarPergunta(pergunta) {
-                // Mostrar loading
-                respostaVazia.style.display = 'none';
-                respostaConteudo.style.display = 'none';
-                respostaLoading.style.display = 'block';
-                
-                // Simular tempo de processamento
-                setTimeout(() => {
-                    // Esconder loading
-                    respostaLoading.style.display = 'none';
-                    
-                    // Mostrar resposta
-                    respostaConteudo.style.display = 'block';
-                    
-                    // Exemplo de resposta (em produção, isso viria da API)
-                    if (pergunta.toLowerCase().includes('cárie')) {
-                        respostaTexto.innerHTML = `
-                            <p>A cárie dentária é uma doença multifatorial, biofilme-dependente, que resulta na desmineralização dos tecidos dentários duros. Suas principais características incluem:</p>
-                            <p>1. <strong>Lesão inicial (mancha branca):</strong> Primeiro sinal clínico visível, caracterizada por uma área opaca, esbranquiçada e sem cavitação.</p>
-                            <p>2. <strong>Progressão:</strong> Se não tratada, evolui para cavitação, atingindo dentina e eventualmente polpa.</p>
-                            <p>3. <strong>Fatores de risco:</strong> Dieta rica em carboidratos fermentáveis, higiene oral deficiente, baixo fluxo salivar, e ausência de exposição adequada ao flúor.</p>
-                            <p>O diagnóstico precoce é fundamental e pode ser realizado através de exame visual após secagem, uso de sonda exploradora (com cuidado para não causar cavitação), radiografias interproximais, e tecnologias como fluorescência a laser.</p>
-                        `;
-                        
-                        listaReferencias.innerHTML = `
-                            <li><a href="visualizador.html?pdf=cariologia.pdf&title=Cariologia">Apostila de Cariologia, páginas 3-7</a></li>
-                            <li><a href="visualizador.html?pdf=CARIOLOGIA-Evoluçãodacárie.pdf&title=CARIOLOGIA - Evolução da cárie">CARIOLOGIA - Evolução da cárie, páginas 2-5</a></li>
-                        `;
-                    } else if (pergunta.toLowerCase().includes('periodontal') || pergunta.toLowerCase().includes('periodontia')) {
-                        respostaTexto.innerHTML = `
-                            <p>O diagnóstico da doença periodontal é realizado através de uma avaliação clínica completa, que inclui os seguintes parâmetros:</p>
-                            <p>1. <strong>Profundidade de sondagem (PS):</strong> Medida da distância da margem gengival ao fundo do sulco/bolsa periodontal.</p>
-                            <p>2. <strong>Nível de inserção clínica (NIC):</strong> Distância da junção cemento-esmalte ao fundo do sulco/bolsa.</p>
-                            <p>3. <strong>Sangramento à sondagem (SS):</strong> Indicador de inflamação ativa.</p>
-                            <p>4. <strong>Mobilidade dentária:</strong> Avaliada em graus (I, II, III).</p>
-                            <p>5. <strong>Envolvimento de furca:</strong> Em dentes multirradiculares (graus I, II, III).</p>
-                            <p>6. <strong>Exame radiográfico:</strong> Para avaliar perda óssea alveolar.</p>
-                            <p>A nova classificação das doenças periodontais (2018) considera estágios (I-IV) baseados na severidade e complexidade, e graus (A-C) baseados na progressão e fatores de risco.</p>
-                        `;
-                        
-                        listaReferencias.innerHTML = `
-                            <li><a href="visualizador.html?pdf=Periodontia-CompletoNovaClassificação.pdf&title=Periodontia - Completo Nova Classificação">Apostila de Periodontia, páginas 8-15</a></li>
-                        `;
-                    } else {
-                        // Resposta genérica para outras perguntas
-                        respostaTexto.innerHTML = `
-                            <p>Sua pergunta sobre "${pergunta}" envolve um tema importante na odontologia. Para responder de forma mais precisa, recomendo consultar as apostilas específicas relacionadas ao assunto.</p>
-                            <p>Você pode encontrar informações detalhadas nas apostilas disponíveis na seção de Especialidades e Resumos do nosso site.</p>
-                            <p>Se precisar de informações mais específicas, por favor reformule sua pergunta mencionando a especialidade odontológica relacionada.</p>
-                        `;
-                        
-                        listaReferencias.innerHTML = `
-                            <li><a href="especialidades.html">Seção de Especialidades</a></li>
-                            <li><a href="resumos.html">Seção de Resumos</a></li>
-                        `;
-                    }
-                }, 1500);
-            }
-            
-            // Event Listeners
-            btnPerguntar.addEventListener('click', function() {
-                const pergunta = perguntaInput.value.trim();
-                if (pergunta) {
-                    processarPergunta(pergunta);
-                }
-            });
-            
-            perguntaInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const pergunta = perguntaInput.value.trim();
-                    if (pergunta) {
-                        processarPergunta(pergunta);
-                    }
-                }
-            });
-            
-            // Questões frequentes
-            questaoCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const pergunta = this.getAttribute('data-pergunta');
-                    perguntaInput.value = pergunta;
-                    processarPergunta(pergunta);
-                    
-                    // Scroll para a área de resposta
-                    document.querySelector('.resposta-container').scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-            
-            // Filtros
-            btnFiltrar.addEventListener('click', function() {
-                // Implementação da filtragem (simulada)
-                alert('Funcionalidade de filtro será implementada em breve!');
-            });
-            
-            btnLimpar.addEventListener('click', function() {
-                filtroMateria.value = '';
-                filtroTema.value = '';
-                filtroBusca.value = '';
-            });
-        });
-    </script>
+    <script src="js/questoes-filter.js"></script>
 </body>
 </html>
