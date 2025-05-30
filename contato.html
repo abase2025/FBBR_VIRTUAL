@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Odonto_FBBR</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para a página de contato */
+        .contato-page {
+            padding: 40px 0;
+        }
+        
+        .contato-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .contato-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .contato-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contato-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+        
+        .contato-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .contato-form-container {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        .contato-form-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contato-form-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .contato-form-header h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .contato-form-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.1);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-submit {
+            text-align: center;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(78, 84, 200, 0.2);
+        }
+        
+        .contato-info-container {
+            background: linear-gradient(135deg, rgba(78, 84, 200, 0.05) 0%, rgba(67, 206, 162, 0.05) 100%);
+            border-radius: 15px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .contato-info-header {
+            margin-bottom: 30px;
+        }
+        
+        .contato-info-header h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .contato-info-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .info-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .info-icon i {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .info-content h4 {
+            color: #333;
+            margin: 0 0 5px;
+            font-size: 1.1rem;
+        }
+        
+        .info-content p {
+            color: #666;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Seção de créditos */
+        .creditos-section {
+            background: linear-gradient(135deg, rgba(78, 84, 200, 0.03) 0%, rgba(67, 206, 162, 0.03) 100%);
+            padding: 60px 0;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .creditos-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .creditos-header h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .creditos-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+        
+        .creditos-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .creditos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .credito-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .credito-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .credito-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .credito-avatar i {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .credito-card h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .credito-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0 0 5px;
+        }
+        
+        .credito-card .cargo {
+            color: #999;
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+        
+        /* Mapa e Contato */
+        .mapa-section {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .mapa-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .mapa-header h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .mapa-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+        
+        .mapa-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            margin-bottom: 40px;
+        }
+        
+        .mapa-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .contato-detalhes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contato-bloco {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .contato-bloco h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contato-bloco h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+        
+        .contato-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .contato-info-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .contato-info-list li i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .cursos-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .cursos-list li {
+            margin-bottom: 12px;
+        }
+        
+        .cursos-list li a {
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cursos-list li a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .cursos-list li a i {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+        
+        .social-header {
+            margin-bottom: 20px;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .social-item {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-item:hover {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-item:hover i {
+            color: white;
+        }
+        
+        .social-item i {
+            font-size: 1.5rem;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .contato-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .creditos-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .contato-detalhes {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contato-form-container,
+            .contato-info-container {
+                padding: 30px;
+            }
+            
+            .contato-header h1 {
+                font-size: 2rem;
+            }
+            
+            .creditos-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .info-items {
+                gap: 20px;
+            }
+            
+            .info-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .credito-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i>Início</a></li>
+                    <li><a href="especialidades.html"><i class="fas fa-tooth"></i>Especialidades</a></li>
+                    <li><a href="resumos.html"><i class="fas fa-book"></i>Resumos</a></li>
+                    <li><a href="questoes.html"><i class="fas fa-question-circle"></i>Questões</a></li>
+                    <li><a href="contato.html" class="active"><i class="fas fa-envelope"></i>Contato</a></li>
+                </ul>
+                <div class="mobile-menu-icon">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="btn btn-primary return-button">
+            <i class="fas fa-arrow-left"></i> Voltar ao Início
+        </a>
+        
+        <section class="contato-page">
+            <div class="contato-container">
+                <div class="contato-header">
+                    <h1>Entre em Contato</h1>
+                    <p>Tire suas dúvidas, envie sugestões ou solicite mais materiais para estudo. Estamos aqui para ajudar você em sua jornada acadêmica.</p>
+                </div>
+                
+                <div class="contato-grid">
+                    <div class="contato-form-container">
+                        <div class="contato-form-header">
+                            <h3>Envie uma Mensagem</h3>
+                            <p>Preencha o formulário abaixo e entraremos em contato o mais breve possível.</p>
+                        </div>
+                        
+                        <form id="contato-form">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo</label>
+                                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="assunto">Assunto</label>
+                                <input type="text" id="assunto" name="assunto" placeholder="Digite o assunto" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem</label>
+                                <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows="5" required></textarea>
+                            </div>
+                            
+                            <div class="form-submit">
+                                <button type="submit" class="btn-submit">
+                                    <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="contato-info-container">
+                        <div>
+                            <div class="contato-info-header">
+                                <h3>Informações de Contato</h3>
+                                <p>Entre em contato conosco através dos canais abaixo.</p>
+                            </div>
+                            
+                            <div class="info-items">
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h4>E-mail</h4>
+                                        <p>vestibular@atmos.edu.br</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h4>Telefones</h4>
+                                        <p>75 3017-0879 | 75 98823-4776</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h4>Endereço</h4>
+                                        <p>Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h4>Horário de Atendimento</h4>
+                                        <p>Segunda a Sexta: 8h às 18h</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>Siga-nos nas Redes Sociais</h4>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seção de Créditos e Equipe -->
+                <div class="creditos-section">
+                    <div class="creditos-header" style="text-align: center;">
+                        <h2 style="display: inline-block; position: relative; text-align: center;">Créditos e Equipe</h2>
+                        <p style="text-align: center;">Conheça os profissionais responsáveis pelo desenvolvimento desta plataforma educacional.</p>
+                    </div>
+                    
+                    <div class="creditos-grid">
+                        <div class="credito-card">
+                            <div class="credito-avatar">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3>Daniella Carvalho Gomes de Cerqueira</h3>
+                            <p>Enfa.danicarvalho@me.com</p>
+                            <p class="cargo">A sua ideia foi o start. Gratidão</p>
+                            <p class="cargo">Coordenação dos cursos de saúde FBBR</p>
+                        </div>
+                        
+                        <div class="credito-card">
+                            <div class="credito-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h3>Felipe</h3>
+                            <p class="cargo">Coordenador do curso de Odontologia, Obrigado pelas dicas e apoio.</p>
+                        </div>
+                        
+                        <div class="credito-card">
+                            <div class="credito-avatar">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3>Prof. Eric</h3>
+                            <p class="cargo">Suas dicas deram vida ao projeto</p>
+                            <p class="cargo">Fundamental pelas dicas e apoio e incentivos</p>
+                        </div>
+                        
+                        <div class="credito-card">
+                            <div class="credito-avatar">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3>Harrison Ribeiro Costa</h3>
+                            <p class="cargo">Desenvolvedor e Estudante da Instituição em Odontologia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mapa da Localização -->
+                <div class="mapa-section">
+                    <div class="mapa-header" style="text-align: center;">
+                        <h2 style="display: inline-block; position: relative; text-align: center;">Nossa Localização</h2>
+                        <p style="text-align: center;">Venha nos visitar e conhecer nossa instituição.</p>
+                    </div>
+                    
+                    <div class="mapa-container">
+                        <div class="mapa-placeholder">
+                            <p><i class="fas fa-map-marker-alt"></i> Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Informações de Contato Detalhadas -->
+                    <div class="contato-detalhes">
+                        <div class="contato-bloco">
+                            <h3>CONTATO</h3>
+                            <ul class="contato-info-list">
+                                <li><i class="fas fa-phone-alt"></i> 75 3017-0879</li>
+                                <li><i class="fas fa-mobile-alt"></i> 75 98823-4776</li>
+                                <li><i class="fas fa-envelope"></i> vestibular@atmos.edu.br</li>
+                                <li><i class="fas fa-map-marker-alt"></i> Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contato-bloco">
+                            <h3>CURSOS</h3>
+                            <ul class="cursos-list">
+                                <li><a href="#"><i class="fas fa-graduation-cap"></i> Graduação</a></li>
+                                <li><a href="#"><i class="fas fa-user-graduate"></i> Pós-Graduação</a></li>
+                                <li><a href="#"><i class="fas fa-info-circle"></i> Informações Públicas</a></li>
+                                <li><a href="#"><i class="fas fa-certificate"></i> Gerar Certificado</a></li>
+                                <li><a href="#"><i class="fas fa-award"></i> Resgatar Certificado</a></li>
+                                <li><a href="#"><i class="fas fa-calendar-alt"></i> Editais e Calendário</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i> Consulta Pública dos Diplomas</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contato-bloco">
+                            <h3>REDES SOCIAIS</h3>
+                            <p class="social-header">Siga nossas redes sociais</p>
+                            <div class="social-grid">
+                                <a href="#" class="social-item">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-item">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-item">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-item">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
+                    <p>Plataforma Gratuita de Estudos em Odontologia</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="especialidades.html">Especialidades</a></li>
+                        <li><a href="resumos.html">Resumos</a></li>
+                        <li><a href="questoes.html">Questões</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-credits">
+                    <h3>Créditos</h3>
+                    <ul>
+                        <li>@Daniella Carvalho Gomes de Cerqueira</li>
+                        <li>Enfa.danicarvalho@me.com</li>
+                        <li>Coordenação dos cursos de saúde FBBR</li>
+                        <li>@coordenador: Felipe</li>
+                        <li>@Pro.Eric: fundamental pelas dicas e apoio</li>
+                        <li>@Harrison Costa, Desenvolvedor e Estudante da Instituição em Odonto</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Odonto_FBBR. Todos os direitos reservados.</p>
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Voltar ao topo
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

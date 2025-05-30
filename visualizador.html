@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de PDF - Odonto_FBBR</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .pdf-container {
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            margin: 0 auto;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .pdf-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .pdf-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .pdf-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .pdf-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pdf-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+            background-color: var(--secondary-color);
+        }
+        
+        .pdf-button i {
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .pdf-container {
+                height: 80vh;
+            }
+            
+            .pdf-controls {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .pdf-title {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            
+            .pdf-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .pdf-button {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo_odonto_fbbr.jpg" alt="Logo Odonto_FBBR">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-button">
+                    <i class="fas fa-home"></i>
+                    <span>Início</span>
+                </a></li>
+                <li><a href="especialidades.html" class="nav-button">
+                    <i class="fas fa-book-medical"></i>
+                    <span>Especialidades</span>
+                </a></li>
+                <li><a href="resumos.html" class="nav-button">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Resumos</span>
+                </a></li>
+                <li><a href="questoes.html" class="nav-button">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Questões</span>
+                </a></li>
+                <li><a href="contato.html" class="nav-button">
+                    <i class="fas fa-address-card"></i>
+                    <span>Contato</span>
+                </a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="pdf-viewer-section">
+            <div class="container">
+                <div class="pdf-container">
+                    <div class="pdf-controls">
+                        <button class="pdf-button" id="btn-voltar">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Voltar</span>
+                        </button>
+                        <h2 class="pdf-title" id="pdf-title">Visualizando PDF</h2>
+                        <div class="pdf-buttons">
+                            <button class="pdf-button" id="btn-download">
+                                <i class="fas fa-download"></i>
+                                <span>Download</span>
+                            </button>
+                        </div>
+                    </div>
+                    <iframe id="pdf-viewer" class="pdf-viewer" src="" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Logo Odonto_FBBR">
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="especialidades.html">Especialidades</a></li>
+                        <li><a href="resumos.html">Resumos</a></li>
+                        <li><a href="questoes.html">Questões</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-phone"></i> 75 3017-0879 / 75 98823-4776</p>
+                    <p><i class="fas fa-envelope"></i> vestibular@atmos.edu.br</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Alberto Passos, 294 - Centro, Cruz das Almas - BA, 44380-000</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Odonto_FBBR. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obter parâmetros da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const pdfFile = urlParams.get('pdf');
+            const pdfTitle = urlParams.get('title') || 'Visualizando PDF';
+            
+            // Definir título e fonte do PDF
+            document.getElementById('pdf-title').textContent = pdfTitle;
+            
+            // Verificar se o PDF foi especificado
+            if (pdfFile) {
+                const pdfPath = `pdfs/${pdfFile}`;
+                document.getElementById('pdf-viewer').src = pdfPath;
+                
+                // Configurar botão de download
+                document.getElementById('btn-download').addEventListener('click', function() {
+                    const link = document.createElement('a');
+                    link.href = pdfPath;
+                    link.download = pdfFile;
+                    link.click();
+                });
+            } else {
+                document.getElementById('pdf-viewer').src = 'about:blank';
+                document.getElementById('pdf-title').textContent = 'PDF não encontrado';
+            }
+            
+            // Configurar botão de voltar
+            document.getElementById('btn-voltar').addEventListener('click', function() {
+                // Verificar se há histórico de navegação
+                if (document.referrer && document.referrer.includes(window.location.host)) {
+                    window.history.back();
+                } else {
+                    // Se não houver histórico, voltar para a página inicial
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

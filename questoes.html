@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odonto_FBBR_Responde | Odonto_FBBR</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para a página de questões */
+        .questoes-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .filtros-container {
+            background: linear-gradient(135deg, rgba(78, 84, 200, 0.1) 0%, rgba(67, 206, 162, 0.1) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .filtros-titulo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .filtros-titulo i {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .filtros-titulo h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .filtros-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .filtro-grupo {
+            margin-bottom: 15px;
+        }
+        
+        .filtro-grupo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .filtro-grupo select,
+        .filtro-grupo input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(78, 84, 200, 0.2);
+            border-radius: 10px;
+            background-color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .filtro-grupo select:focus,
+        .filtro-grupo input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+            outline: none;
+        }
+        
+        .filtro-botoes {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .filtro-botoes button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-filtrar {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .btn-limpar {
+            background: #f0f0f0;
+            color: #666;
+        }
+        
+        .btn-filtrar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
+        }
+        
+        .btn-limpar:hover {
+            background: #e0e0e0;
+        }
+        
+        /* Área de resposta */
+        .resposta-container {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        .resposta-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(78, 84, 200, 0.1);
+        }
+        
+        .resposta-header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .resposta-header-info h3 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+        
+        .resposta-header-info p {
+            margin: 5px 0 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .pergunta-area {
+            margin-bottom: 30px;
+        }
+        
+        .pergunta-area textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(78, 84, 200, 0.2);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+        
+        .pergunta-area textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+            outline: none;
+        }
+        
+        .pergunta-botao {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .btn-perguntar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-perguntar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
+        }
+        
+        .btn-perguntar i {
+            font-size: 1.2rem;
+        }
+        
+        /* Área de resposta */
+        .resposta-conteudo {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(78, 84, 200, 0.1);
+        }
+        
+        .resposta-titulo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .resposta-titulo i {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .resposta-titulo h3 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+        
+        .resposta-texto {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .resposta-texto::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #f9f9f9;
+        }
+        
+        .resposta-texto p {
+            margin: 0 0 15px;
+            line-height: 1.6;
+        }
+        
+        .resposta-texto p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .resposta-referencias {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .resposta-referencias h4 {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .resposta-referencias ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .resposta-referencias li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .resposta-referencias a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .resposta-referencias a:hover {
+            text-decoration: underline;
+        }
+        
+        .resposta-loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .resposta-loading i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .resposta-vazia {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+        
+        .resposta-vazia i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+        
+        /* Questões recentes */
+        .questoes-recentes {
+            margin-top: 50px;
+        }
+        
+        .questoes-recentes h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .questoes-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .questao-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .questao-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .questao-materia {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: rgba(78, 84, 200, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .questao-titulo {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .questao-preview {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .questao-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .filtros-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .filtro-botoes {
+                flex-direction: column;
+            }
+            
+            .resposta-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .resposta-header img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .questoes-lista {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i>Início</a></li>
+                    <li><a href="especialidades.html"><i class="fas fa-tooth"></i>Especialidades</a></li>
+                    <li><a href="resumos.html"><i class="fas fa-book"></i>Resumos</a></li>
+                    <li><a href="questoes.html" class="active"><i class="fas fa-question-circle"></i>Questões</a></li>
+                    <li><a href="contato.html"><i class="fas fa-envelope"></i>Contato</a></li>
+                </ul>
+                <div class="mobile-menu-icon">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="btn btn-primary return-button">
+            <i class="fas fa-arrow-left"></i> Voltar ao Início
+        </a>
+        
+        <section class="questoes-page">
+            <div class="container" style="text-align: center;">
+                <h1 style="display: inline-block; position: relative; text-align: center;">Odonto_FBBR_Responde</h1>
+                <p class="section-description">Tire suas dúvidas sobre odontologia e receba respostas baseadas em materiais científicos e apostilas.</p>
+                
+                <div class="questoes-container">
+                    <!-- Filtros -->
+                    <div class="filtros-container">
+                        <div class="filtros-titulo">
+                            <i class="fas fa-filter"></i>
+                            <h3>Filtros de Busca</h3>
+                        </div>
+                        
+                        <div class="filtros-form">
+                            <div class="filtro-grupo">
+                                <label for="filtro-materia">Matéria</label>
+                                <select id="filtro-materia">
+                                    <option value="">Todas as matérias</option>
+                                    <option value="anatomia">Anatomia Dental</option>
+                                    <option value="cariologia">Cariologia</option>
+                                    <option value="dentistica">Dentística</option>
+                                    <option value="endodontia">Endodontia</option>
+                                    <option value="periodontia">Periodontia</option>
+                                    <option value="ortodontia">Ortodontia</option>
+                                    <option value="protese">Prótese Dentária</option>
+                                    <option value="materiais">Materiais Odontológicos</option>
+                                    <option value="farmacologia">Farmacologia</option>
+                                    <option value="oclusao">Oclusão</option>
+                                    <option value="instrumentais">Instrumentais</option>
+                                    <option value="isolamento">Isolamento</option>
+                                    <option value="odontolegal">Odontologia Legal</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filtro-grupo">
+                                <label for="filtro-tema">Tema</label>
+                                <select id="filtro-tema">
+                                    <option value="">Todos os temas</option>
+                                    <option value="diagnostico">Diagnóstico</option>
+                                    <option value="tratamento">Tratamento</option>
+                                    <option value="prevencao">Prevenção</option>
+                                    <option value="tecnicas">Técnicas</option>
+                                    <option value="materiais">Materiais</option>
+                                    <option value="instrumentos">Instrumentos</option>
+                                    <option value="patologias">Patologias</option>
+                                    <option value="procedimentos">Procedimentos</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filtro-grupo">
+                                <label for="filtro-busca">Palavra-chave</label>
+                                <input type="text" id="filtro-busca" placeholder="Digite uma palavra-chave">
+                            </div>
+                        </div>
+                        
+                        <div class="filtro-botoes">
+                            <button class="btn-filtrar" id="btn-filtrar">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                            <button class="btn-limpar" id="btn-limpar">
+                                <i class="fas fa-times"></i> Limpar Filtros
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Área de Resposta -->
+                    <div class="resposta-container">
+                        <div class="resposta-header">
+                            <img src="images/assistente-virtual.jpg" alt="FBBR_IA">
+                            <div class="resposta-header-info">
+                                <h3>FBBR_IA</h3>
+                                <p>Assistente Virtual de Odontologia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pergunta-area">
+                            <textarea id="pergunta-input" placeholder="Digite sua pergunta sobre odontologia aqui..."></textarea>
+                            <div class="pergunta-botao">
+                                <button class="btn-perguntar" id="btn-perguntar">
+                                    <i class="fas fa-paper-plane"></i> Enviar Pergunta
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="resposta-loading" id="resposta-loading">
+                            <i class="fas fa-spinner"></i>
+                            <p>Buscando resposta...</p>
+                        </div>
+                        
+                        <div class="resposta-vazia" id="resposta-vazia">
+                            <i class="fas fa-comment-dots"></i>
+                            <p>Faça uma pergunta para receber uma resposta baseada nos materiais de estudo.</p>
+                        </div>
+                        
+                        <div class="resposta-conteudo" id="resposta-conteudo" style="display: none;">
+                            <div class="resposta-titulo">
+                                <i class="fas fa-lightbulb"></i>
+                                <h3>Resposta</h3>
+                            </div>
+                            
+                            <div class="resposta-texto" id="resposta-texto">
+                                <!-- Conteúdo da resposta será inserido aqui -->
+                            </div>
+                            
+                            <div class="resposta-referencias" id="resposta-referencias">
+                                <h4>Referências:</h4>
+                                <ul id="lista-referencias">
+                                    <!-- Referências serão inseridas aqui -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Questões Recentes -->
+                    <div class="questoes-recentes">
+                        <h3>Questões Frequentes</h3>
+                        
+                        <div class="questoes-lista">
+                            <!-- Questão 1 -->
+                            <div class="questao-card" data-pergunta="Quais são as principais características da cárie dentária?">
+                                <span class="questao-materia">Cariologia</span>
+                                <h4 class="questao-titulo">Características da cárie dentária</h4>
+                                <p class="questao-preview">Quais são as principais características da cárie dentária e como identificá-la em estágios iniciais?</p>
+                                <div class="questao-footer">
+                                    <span>Fonte: <a href="visualizador.html?pdf=cariologia.pdf&title=Cariologia">Apostila de Cariologia</a></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Questão 2 -->
+                            <div class="questao-card" data-pergunta="Como é feito o diagnóstico da doença periodontal?">
+                                <span class="questao-materia">Periodontia</span>
+                                <h4 class="questao-titulo">Diagnóstico periodontal</h4>
+                                <p class="questao-preview">Como é feito o diagnóstico da doença periodontal e quais são os principais parâmetros clínicos avaliados?</p>
+                                <div class="questao-footer">
+                                    <span>Fonte: <a href="visualizador.html?pdf=Periodontia-CompletoNovaClassificação.pdf&title=Periodontia - Completo Nova Classificação">Apostila de Periodontia</a></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Questão 3 -->
+                            <div class="questao-card" data-pergunta="Quais são as indicações para tratamento endodôntico?">
+                                <span class="questao-materia">Endodontia</span>
+                                <h4 class="questao-titulo">Indicações para endodontia</h4>
+                                <p class="questao-preview">Quais são as principais indicações para tratamento endodôntico e como avaliar a necessidade desse procedimento?</p>
+                                <div class="questao-footer">
+                                    <span>Fonte: <a href="visualizador.html?pdf=Endodontia-Introduçãoeanatomiainternadosdentes.pdf&title=Endodontia - Introdução e Anatomia Interna dos Dentes">Apostila de Endodontia</a></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Questão 4 -->
+                            <div class="questao-card" data-pergunta="Como realizar o isolamento absoluto em dentes posteriores?">
+                                <span class="questao-materia">Isolamento</span>
+                                <h4 class="questao-titulo">Isolamento absoluto</h4>
+                                <p class="questao-preview">Qual é a técnica correta para realizar o isolamento absoluto em dentes posteriores e quais materiais são necessários?</p>
+                                <div class="questao-footer">
+                                    <span>Fonte: <a href="visualizador.html?pdf=isolamentos.pdf&title=Isolamentos">Apostila de Isolamento</a></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Questão 5 -->
+                            <div class="questao-card" data-pergunta="Quais são as propriedades ideais dos materiais restauradores?">
+                                <span class="questao-materia">Materiais</span>
+                                <h4 class="questao-titulo">Materiais restauradores</h4>
+                                <p class="questao-preview">Quais são as propriedades ideais que os materiais restauradores devem apresentar e como escolher o material adequado?</p>
+                                <div class="questao-footer">
+                                    <span>Fonte: <a href="visualizador.html?pdf=MATERIAISODONTOLOGICOS-MATERIAISRESTAURADORES.pdf&title=Materiais Odontológicos - Materiais Restauradores">Apostila de Materiais</a></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Questão 6 -->
+                            <div class="questao-card" data-pergunta="Como identificar os diferentes tipos de maloclusão?">
+                                <span class="questao-materia">Ortodontia</span>
+                                <h4 class="questao-titulo">Classificação de maloclusões</h4>
+                                <p class="questao-preview">Como identificar e classificar os diferentes tipos de maloclusão segundo Angle e quais são suas características?</p>
+                                <div class="questao-footer">
+                                    <span>Fonte: <a href="visualizador.html?pdf=ORTODONTIA.pdf&title=Ortodontia">Apostila de Ortodontia</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
+                    <p>Plataforma Gratuita de Estudos em Odontologia</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="especialidades.html">Especialidades</a></li>
+                        <li><a href="resumos.html">Resumos</a></li>
+                        <li><a href="questoes.html">Questões</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-credits">
+                    <h3>Créditos</h3>
+                    <ul>
+                        <li>@Daniella Carvalho Gomes de Cerqueira</li>
+                        <li>Enfa.danicarvalho@me.com</li>
+                        <li>Coordenação dos cursos de saúde FBBR</li>
+                        <li>@coordenador: Felipe</li>
+                        <li>@Pro.Eric: fundamental pelas dicas e apoio</li>
+                        <li>@Harrison Costa, Desenvolvedor e Estudante da Instituição em Odonto</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Odonto_FBBR. Todos os direitos reservados.</p>
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Voltar ao topo
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos
+            const perguntaInput = document.getElementById('pergunta-input');
+            const btnPerguntar = document.getElementById('btn-perguntar');
+            const respostaLoading = document.getElementById('resposta-loading');
+            const respostaVazia = document.getElementById('resposta-vazia');
+            const respostaConteudo = document.getElementById('resposta-conteudo');
+            const respostaTexto = document.getElementById('resposta-texto');
+            const listaReferencias = document.getElementById('lista-referencias');
+            const questaoCards = document.querySelectorAll('.questao-card');
+            
+            // Filtros
+            const filtroMateria = document.getElementById('filtro-materia');
+            const filtroTema = document.getElementById('filtro-tema');
+            const filtroBusca = document.getElementById('filtro-busca');
+            const btnFiltrar = document.getElementById('btn-filtrar');
+            const btnLimpar = document.getElementById('btn-limpar');
+            
+            // Função para processar a pergunta
+            function processarPergunta(pergunta) {
+                // Mostrar loading
+                respostaVazia.style.display = 'none';
+                respostaConteudo.style.display = 'none';
+                respostaLoading.style.display = 'block';
+                
+                // Simular tempo de processamento
+                setTimeout(() => {
+                    // Esconder loading
+                    respostaLoading.style.display = 'none';
+                    
+                    // Mostrar resposta
+                    respostaConteudo.style.display = 'block';
+                    
+                    // Exemplo de resposta (em produção, isso viria da API)
+                    if (pergunta.toLowerCase().includes('cárie')) {
+                        respostaTexto.innerHTML = `
+                            <p>A cárie dentária é uma doença multifatorial, biofilme-dependente, que resulta na desmineralização dos tecidos dentários duros. Suas principais características incluem:</p>
+                            <p>1. <strong>Lesão inicial (mancha branca):</strong> Primeiro sinal clínico visível, caracterizada por uma área opaca, esbranquiçada e sem cavitação.</p>
+                            <p>2. <strong>Progressão:</strong> Se não tratada, evolui para cavitação, atingindo dentina e eventualmente polpa.</p>
+                            <p>3. <strong>Fatores de risco:</strong> Dieta rica em carboidratos fermentáveis, higiene oral deficiente, baixo fluxo salivar, e ausência de exposição adequada ao flúor.</p>
+                            <p>O diagnóstico precoce é fundamental e pode ser realizado através de exame visual após secagem, uso de sonda exploradora (com cuidado para não causar cavitação), radiografias interproximais, e tecnologias como fluorescência a laser.</p>
+                        `;
+                        
+                        listaReferencias.innerHTML = `
+                            <li><a href="visualizador.html?pdf=cariologia.pdf&title=Cariologia">Apostila de Cariologia, páginas 3-7</a></li>
+                            <li><a href="visualizador.html?pdf=CARIOLOGIA-Evoluçãodacárie.pdf&title=CARIOLOGIA - Evolução da cárie">CARIOLOGIA - Evolução da cárie, páginas 2-5</a></li>
+                        `;
+                    } else if (pergunta.toLowerCase().includes('periodontal') || pergunta.toLowerCase().includes('periodontia')) {
+                        respostaTexto.innerHTML = `
+                            <p>O diagnóstico da doença periodontal é realizado através de uma avaliação clínica completa, que inclui os seguintes parâmetros:</p>
+                            <p>1. <strong>Profundidade de sondagem (PS):</strong> Medida da distância da margem gengival ao fundo do sulco/bolsa periodontal.</p>
+                            <p>2. <strong>Nível de inserção clínica (NIC):</strong> Distância da junção cemento-esmalte ao fundo do sulco/bolsa.</p>
+                            <p>3. <strong>Sangramento à sondagem (SS):</strong> Indicador de inflamação ativa.</p>
+                            <p>4. <strong>Mobilidade dentária:</strong> Avaliada em graus (I, II, III).</p>
+                            <p>5. <strong>Envolvimento de furca:</strong> Em dentes multirradiculares (graus I, II, III).</p>
+                            <p>6. <strong>Exame radiográfico:</strong> Para avaliar perda óssea alveolar.</p>
+                            <p>A nova classificação das doenças periodontais (2018) considera estágios (I-IV) baseados na severidade e complexidade, e graus (A-C) baseados na progressão e fatores de risco.</p>
+                        `;
+                        
+                        listaReferencias.innerHTML = `
+                            <li><a href="visualizador.html?pdf=Periodontia-CompletoNovaClassificação.pdf&title=Periodontia - Completo Nova Classificação">Apostila de Periodontia, páginas 8-15</a></li>
+                        `;
+                    } else {
+                        // Resposta genérica para outras perguntas
+                        respostaTexto.innerHTML = `
+                            <p>Sua pergunta sobre "${pergunta}" envolve um tema importante na odontologia. Para responder de forma mais precisa, recomendo consultar as apostilas específicas relacionadas ao assunto.</p>
+                            <p>Você pode encontrar informações detalhadas nas apostilas disponíveis na seção de Especialidades e Resumos do nosso site.</p>
+                            <p>Se precisar de informações mais específicas, por favor reformule sua pergunta mencionando a especialidade odontológica relacionada.</p>
+                        `;
+                        
+                        listaReferencias.innerHTML = `
+                            <li><a href="especialidades.html">Seção de Especialidades</a></li>
+                            <li><a href="resumos.html">Seção de Resumos</a></li>
+                        `;
+                    }
+                }, 1500);
+            }
+            
+            // Event Listeners
+            btnPerguntar.addEventListener('click', function() {
+                const pergunta = perguntaInput.value.trim();
+                if (pergunta) {
+                    processarPergunta(pergunta);
+                }
+            });
+            
+            perguntaInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const pergunta = perguntaInput.value.trim();
+                    if (pergunta) {
+                        processarPergunta(pergunta);
+                    }
+                }
+            });
+            
+            // Questões frequentes
+            questaoCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const pergunta = this.getAttribute('data-pergunta');
+                    perguntaInput.value = pergunta;
+                    processarPergunta(pergunta);
+                    
+                    // Scroll para a área de resposta
+                    document.querySelector('.resposta-container').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Filtros
+            btnFiltrar.addEventListener('click', function() {
+                // Implementação da filtragem (simulada)
+                alert('Funcionalidade de filtro será implementada em breve!');
+            });
+            
+            btnLimpar.addEventListener('click', function() {
+                filtroMateria.value = '';
+                filtroTema.value = '';
+                filtroBusca.value = '';
+            });
+        });
+    </script>
+</body>
+</html>

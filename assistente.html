@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistente Virtual | Odonto_FBBR</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i>Início</a></li>
+                    <li><a href="especialidades.html"><i class="fas fa-tooth"></i>Especialidades</a></li>
+                    <li><a href="resumos.html"><i class="fas fa-book"></i>Resumos</a></li>
+                    <li><a href="questoes.html"><i class="fas fa-question-circle"></i>Questões</a></li>
+                    <li><a href="contato.html"><i class="fas fa-envelope"></i>Contato</a></li>
+                </ul>
+                <div class="mobile-menu-icon">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="btn btn-primary return-button">
+            <i class="fas fa-arrow-left"></i> Voltar ao Início
+        </a>
+        
+        <section class="assistente-page">
+            <div class="container">
+                <h1>FBBR_IA - Seu Assistente Virtual</h1>
+                <p class="section-description">Tire suas dúvidas sobre odontologia com nosso assistente virtual. Ele pode pesquisar nos PDFs e na internet para encontrar as respostas que você precisa.</p>
+                
+                <div class="assistente-chat">
+                    <div class="assistente-header">
+                        <div class="assistente-avatar">
+                            <img src="images/assistente-virtual.jpg" alt="FBBR_IA">
+                        </div>
+                        <div class="assistente-info">
+                            <h3>FBBR_IA</h3>
+                            <p>Assistente Virtual de Odontologia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot">
+                            <div class="message-content">
+                                <p>Olá! Eu sou o FBBR_IA, seu assistente virtual de estudos em Odontologia. Como posso ajudar você hoje?</p>
+                            </div>
+                        </div>
+                        <div class="message bot">
+                            <div class="message-content">
+                                <p>Você pode me perguntar sobre qualquer tópico relacionado à Odontologia. Posso pesquisar nos PDFs e na internet para encontrar as melhores respostas para você.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Digite sua pergunta aqui...">
+                        <button id="send-button" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="assistente-features">
+                    <h2>Recursos do FBBR_IA</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>Pesquisa em PDFs</h3>
+                            <p>O FBBR_IA pode pesquisar em todos os PDFs disponíveis na plataforma para encontrar informações precisas.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Pesquisa na Internet</h3>
+                            <p>Quando necessário, o assistente busca informações atualizadas na internet para complementar suas respostas.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>Explicações Didáticas</h3>
+                            <p>Receba explicações claras e didáticas sobre conceitos complexos de Odontologia.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3>Recomendação de Materiais</h3>
+                            <p>O FBBR_IA pode recomendar apostilas e materiais específicos para aprofundar seus estudos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo_odonto_fbbr.jpg" alt="Odonto_FBBR Logo">
+                    <p>Plataforma Gratuita de Estudos em Odontologia</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="especialidades.html">Especialidades</a></li>
+                        <li><a href="resumos.html">Resumos</a></li>
+                        <li><a href="questoes.html">Questões</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-credits">
+                    <h3>Créditos</h3>
+                    <ul>
+                        <li>@Daniella Carvalho Gomes de Cerqueira</li>
+                        <li>Enfa.danicarvalho@me.com</li>
+                        <li>Coordenação dos cursos de saúde FBBR</li>
+                        <li>@coordenador: Felipe</li>
+                        <li>@Pro.Eric: fundamental pelas dicas e apoio</li>
+                        <li>@Harrison Costa, Desenvolvedor e Estudante da Instituição em Odonto</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Odonto_FBBR. Todos os direitos reservados.</p>
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Voltar ao topo
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
