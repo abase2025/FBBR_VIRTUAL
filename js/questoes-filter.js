@@ -119,8 +119,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Adicionar resultados de busca na web (simulado)
             if (busca) {
-                const termosBusca = ['cárie', 'periodontite', 'endodontia', 'ortodontia', 'prótese'];
-                if (termosBusca.some(termo => busca.includes(termo))) {
+                // Expandir termos de busca para cobrir mais áreas da odontologia
+                const termosBusca = [
+                    'cárie', 'periodontite', 'endodontia', 'ortodontia', 'prótese', 
+                    'dente', 'dental', 'gengiva', 'canal', 'restauração', 'implante',
+                    'oclusão', 'bruxismo', 'anestesia', 'extração', 'cirurgia', 'odonto'
+                ];
+                
+                if (termosBusca.some(termo => busca.includes(termo)) || busca.length > 5) {
                     resultados.push({
                         materia: materia ? filtroMateria.options[filtroMateria.selectedIndex].text : 'Resultado Web',
                         titulo: `Resultados da web para: ${busca}`,
@@ -344,16 +350,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
     
-    // Adicionar eventos aos botões
-    btnFiltrar.addEventListener('click', buscarQuestoes);
-    btnLimpar.addEventListener('click', () => {
-        filtroMateria.value = '';
-        filtroTema.value = '';
-        filtroBusca.value = '';
-        questoesLista.innerHTML = '';
-    });
-    btnPerguntar.addEventListener('click', buscarResposta);
+    // Adicionar eventos
+    if (btnFiltrar) {
+        btnFiltrar.addEventListener('click', buscarQuestoes);
+    }
+    
+    if (btnLimpar) {
+        btnLimpar.addEventListener('click', () => {
+            filtroMateria.value = '';
+            filtroTema.value = '';
+            filtroBusca.value = '';
+            questoesLista.innerHTML = '';
+            // Recarregar todas as questões após limpar filtros
+            setTimeout(() => {
+                buscarQuestoes();
+            }, 300);
+        });
+    }
+    
+    if (btnPerguntar) {
+        btnPerguntar.addEventListener('click', buscarResposta);
+        
+        // Adicionar evento de tecla Enter para enviar pergunta
+        perguntaTextarea.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                buscarResposta();
+            }
+        });
+    }
     
     // Carregar questões iniciais
-    buscarQuestoes();
-});
+    setTimeout(() => {
+        buscarQuestoes();
+    }, 500);
