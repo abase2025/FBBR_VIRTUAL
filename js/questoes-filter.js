@@ -1,5 +1,7 @@
 // Script para funcionalidade de filtro na página de questões
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("Inicializando script de filtro e assistente...");
+    
     // Elementos do DOM
     const filtroMateria = document.getElementById('filtro-materia');
     const filtroTema = document.getElementById('filtro-tema');
@@ -14,6 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const respostaTexto = document.getElementById('resposta-texto');
     const respostaReferencias = document.getElementById('resposta-referencias');
     const questoesLista = document.getElementById('questoes-lista');
+
+    // Verificar se todos os elementos foram encontrados
+    if (!filtroMateria || !filtroTema || !filtroBusca || !btnFiltrar || !btnLimpar || 
+        !perguntaTextarea || !btnPerguntar || !respostaContainer || !respostaLoading || 
+        !respostaConteudo || !respostaTexto || !respostaReferencias || !questoesLista) {
+        console.error("Alguns elementos não foram encontrados na página");
+        return; // Encerra a execução se algum elemento não for encontrado
+    }
+
+    console.log("Todos os elementos do DOM foram encontrados");
 
     // Mapeamento de matérias para PDFs relacionados
     const materiasPdfs = {
@@ -32,7 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'instrumentais': ['instrumentais.pdf'],
         'isolamento': ['isolamentos.pdf'],
         'odontolegal': ['odontolegal.pdf'],
-        'patologias': ['graves.pdf']
+        'patologias': ['graves.pdf'],
+        'anestesia': ['anestesia1.pdf', 'anestesia2.pdf', 'anestesia3.pdf', 'ANESTESIA-TÉCNICASEMANEJOS.pdf', 'ANESTESIA-CONSIDERAÇÕESANATÔMICAS(1).pdf']
     };
 
     // Questões pré-definidas por matéria
@@ -84,14 +97,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 resposta: 'A nova classificação de 2018 divide as doenças periodontais em três grandes grupos: 1) Saúde periodontal e gengival; 2) Gengivite induzida por biofilme e não induzida por biofilme; 3) Periodontite, agora classificada em estágios (I-IV, baseados na severidade) e graus (A-C, baseados na progressão). Foram incluídas também condições e doenças peri-implantares. A periodontite agressiva e crônica foram unificadas em um único diagnóstico de periodontite.',
                 referencias: ['Periodontia-CompletoNovaClassificação.pdf']
             }
+        ],
+        'anestesia': [
+            {
+                materia: 'Anestesia',
+                titulo: 'Técnicas de anestesia para bloqueio do nervo alveolar inferior',
+                preview: 'Quais são as técnicas mais eficazes para bloqueio do nervo alveolar inferior?',
+                data: '30/05/2025',
+                resposta: 'O bloqueio do nervo alveolar inferior (BNAI) pode ser realizado por diferentes técnicas: 1) Técnica direta: agulha inserida na prega pterigomandibular em direção à língula; 2) Técnica indireta: agulha inserida na face oclusal dos molares inferiores do lado oposto, avançando até a região retromolar; 3) Técnica de Gow-Gates: bloqueio mais alto, na altura do colo do côndilo mandibular; 4) Técnica de Vazirani-Akinosi: técnica de boca fechada, útil em casos de trismo. A eficácia varia entre 80-85% para técnicas convencionais e pode chegar a 95% com Gow-Gates quando corretamente executada.',
+                referencias: ['anestesia1.pdf', 'ANESTESIA-TÉCNICASEMANEJOS.pdf']
+            },
+            {
+                materia: 'Anestesia',
+                titulo: 'Considerações anatômicas para anestesia em odontologia',
+                preview: 'Quais são as principais considerações anatômicas para anestesia em odontologia?',
+                data: '29/05/2025',
+                resposta: 'As principais considerações anatômicas incluem: 1) Inervação específica de cada região (trigêmeo e seus ramos); 2) Variações anatômicas como forame mandibular acessório (15% da população); 3) Proximidade de estruturas vasculares importantes; 4) Espessura da cortical óssea (mais densa em mandíbula); 5) Presença de processos inflamatórios que podem alterar o pH local e reduzir a eficácia anestésica; 6) Diferenças anatômicas entre adultos e crianças. O conhecimento detalhado da anatomia neurovascular da cabeça e pescoço é fundamental para o sucesso anestésico e prevenção de complicações.',
+                referencias: ['ANESTESIA-CONSIDERAÇÕESANATÔMICAS(1).pdf', 'anestesia2.pdf']
+            }
         ]
     };
 
     // Função para buscar questões com base nos filtros
     function buscarQuestoes() {
+        console.log("Função buscarQuestoes iniciada");
         const materia = filtroMateria.value;
         const tema = filtroTema.value;
         const busca = filtroBusca.value.toLowerCase();
+        
+        console.log(`Filtros: matéria=${materia}, tema=${tema}, busca=${busca}`);
         
         // Mostrar indicador de carregamento
         respostaLoading.style.display = 'block';
@@ -116,6 +150,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             });
+            
+            console.log(`Resultados encontrados: ${resultados.length}`);
             
             // Adicionar resultados de busca na web (simulado)
             if (busca) {
@@ -175,6 +211,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para mostrar resposta de uma questão
     function mostrarResposta(questao) {
+        console.log("Função mostrarResposta iniciada", questao);
+        
         // Rolar para o topo da seção de resposta
         respostaContainer.scrollIntoView({ behavior: 'smooth' });
         
@@ -228,12 +266,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para buscar resposta para pergunta digitada
     function buscarResposta() {
+        console.log("Função buscarResposta iniciada");
+        
         const pergunta = perguntaTextarea.value.trim();
         
         if (!pergunta) {
             alert('Por favor, digite sua pergunta antes de enviar.');
             return;
         }
+        
+        console.log(`Pergunta: ${pergunta}`);
         
         // Mostrar indicador de carregamento
         respostaLoading.style.display = 'block';
@@ -258,7 +300,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'ortodontia': ['ortodontia', 'aparelho', 'alinhamento', 'oclusão', 'maloclusão'],
                 'protese': ['prótese', 'removível', 'fixa', 'total', 'parcial', 'implante'],
                 'materiais': ['materiais', 'restaurador', 'resina', 'amálgama', 'cimento'],
-                'farmacologia': ['farmacologia', 'medicamento', 'anestésico', 'antibiótico', 'analgésico'],
+                'farmacologia': ['farmacologia', 'medicamento', 'antibiótico', 'analgésico'],
+                'anestesia': ['anestesia', 'anestésico', 'bloqueio', 'infiltrativa', 'lidocaína', 'articaína', 'mepivacaína'],
                 'oclusao': ['oclusão', 'articulação', 'atm', 'bruxismo', 'mordida'],
                 'instrumentais': ['instrumental', 'instrumento', 'pinça', 'sonda', 'espelho'],
                 'isolamento': ['isolamento', 'absoluto', 'relativo', 'dique', 'lençol de borracha'],
@@ -279,25 +322,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 pdfsRelevantes = ['ANATOMIADENTAL-ResumoCompleto.pdf', 'Dentisticacompleto.pdf'];
             }
             
+            console.log(`Matéria encontrada: ${materiaEncontrada}, PDFs relevantes: ${pdfsRelevantes.length}`);
+            
             // Gerar resposta baseada na matéria identificada
             let resposta = '';
             let referencias = [];
             
             switch (materiaEncontrada) {
                 case 'anatomia':
-                    resposta = 'A anatomia dental é fundamental para a prática odontológica. Os dentes humanos são divididos em incisivos, caninos, pré-molares e molares, cada um com características morfológicas específicas. Os incisivos têm função de corte, os caninos de rasgar, os pré-molares de trituração inicial e os molares de trituração final dos alimentos. Cada dente possui coroa (porção visível) e raiz (inserida no osso alveolar), além de esmalte, dentina, cemento e polpa como tecidos constituintes.';
-                    referencias = pdfsRelevantes.slice(0, 3);
+                    resposta = 'A anatomia dental é fundamental para a prática odontológica. Os dentes humanos são divididos em incisivos, caninos, pré-molares e molares, cada um com características morfológicas específicas. Os incisivos têm função de corte, os caninos de dilaceração, os pré-molares de trituração inicial e os molares de trituração final dos alimentos. A compreensão detalhada da anatomia dental permite diagnósticos precisos e tratamentos adequados, respeitando a forma e função de cada elemento dentário.';
+                    referencias = pdfsRelevantes;
                     break;
                 case 'cariologia':
-                    resposta = 'A cárie dentária é uma doença multifatorial, biofilme-dependente, que resulta da desmineralização dos tecidos dentários duros. O processo inicia-se com a formação de biofilme, seguido pela produção de ácidos pelas bactérias após metabolização de carboidratos fermentáveis. A lesão inicial (mancha branca) é reversível através de medidas preventivas como controle de biofilme, uso de fluoretos e controle da dieta. O diagnóstico precoce é fundamental para tratamentos menos invasivos.';
+                    resposta = 'A cárie dentária é uma doença multifatorial, biofilme-dependente, caracterizada pela desmineralização dos tecidos dentários duros. Seu desenvolvimento envolve a interação entre hospedeiro suscetível, microbiota cariogênica, dieta rica em carboidratos fermentáveis e tempo. O processo inicia-se com a formação de biofilme, seguido pela produção de ácidos que desmineralizam o esmalte. A prevenção baseia-se no controle de biofilme, uso de fluoretos, orientação dietética e aplicação de selantes em superfícies suscetíveis.';
                     referencias = pdfsRelevantes;
                     break;
                 case 'endodontia':
-                    resposta = 'A endodontia é a especialidade que estuda a polpa dentária, canais radiculares e tecidos periapicais, bem como as doenças que os afetam. O tratamento endodôntico consiste na remoção do tecido pulpar inflamado ou necrosado, preparo biomecânico dos canais radiculares e seu preenchimento com material obturador. A anatomia interna dos dentes é complexa e varia conforme o grupo dentário, sendo fundamental seu conhecimento para o sucesso do tratamento.';
+                    resposta = 'A endodontia é a especialidade odontológica responsável pelo estudo da polpa dental e dos tecidos periapicais, bem como das doenças que os afetam. O tratamento endodôntico consiste na remoção do tecido pulpar inflamado ou necrosado, preparo biomecânico dos canais radiculares e seu selamento tridimensional. O conhecimento da anatomia interna dos dentes é essencial para o sucesso do tratamento, considerando variações como canais acessórios, deltas apicais e istmos.';
                     referencias = pdfsRelevantes;
                     break;
                 case 'periodontia':
-                    resposta = 'A periodontia é a especialidade que estuda os tecidos de suporte e circundantes dos dentes (gengiva, ligamento periodontal, cemento radicular e osso alveolar) e as doenças que os afetam. A doença periodontal é uma condição inflamatória crônica induzida por biofilme que pode levar à perda de inserção periodontal e, eventualmente, à perda dentária. A nova classificação de 2018 categoriza a periodontite em estágios (I-IV) baseados na severidade e graus (A-C) baseados na progressão.';
+                    resposta = 'A periodontia é a especialidade que estuda e trata as doenças do periodonto: gengiva, ligamento periodontal, cemento radicular e osso alveolar. As principais doenças periodontais são a gengivite (inflamação restrita à gengiva) e a periodontite (destruição dos tecidos de suporte). A nova classificação de 2018 categoriza a periodontite em estágios (I a IV, baseados na severidade) e graus (A a C, baseados na progressão). O tratamento envolve controle de biofilme, raspagem e alisamento radicular, e em casos avançados, cirurgias periodontais.';
+                    referencias = pdfsRelevantes;
+                    break;
+                case 'anestesia':
+                    resposta = 'A anestesia local em odontologia envolve o bloqueio reversível da condução nervosa, permitindo procedimentos sem dor. Os anestésicos mais utilizados são lidocaína, mepivacaína, articaína e prilocaína, geralmente associados a vasoconstritores como epinefrina. As técnicas anestésicas variam conforme a região a ser anestesiada, incluindo técnicas infiltrativas (supraperiosteal, intraligamentar, intrapulpar) e técnicas de bloqueio regional (nervo alveolar inferior, nervo alveolar superior posterior, nervo infraorbitário). O conhecimento anatômico detalhado é fundamental para o sucesso anestésico e prevenção de complicações.';
                     referencias = pdfsRelevantes;
                     break;
                 default:
@@ -310,7 +359,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'mancha branca': 'A mancha branca é o primeiro sinal clínico visível da cárie dentária, representando uma lesão de subsuperfície no esmalte. É caracterizada por uma área opaca, sem brilho, resultante da desmineralização subsuperficial. Neste estágio, a lesão ainda é reversível através de medidas preventivas como controle de biofilme, uso de fluoretos e controle da dieta.',
                 'pulpite': 'A pulpite é a inflamação da polpa dentária, podendo ser reversível ou irreversível. Na pulpite reversível, o paciente apresenta dor provocada que cessa após a remoção do estímulo. Na pulpite irreversível, a dor é espontânea, intensa, pulsátil e pode ser exacerbada por mudanças de temperatura. O tratamento da pulpite irreversível é o tratamento endodôntico (canal).',
                 'bruxismo': 'O bruxismo é uma atividade muscular repetitiva caracterizada pelo apertamento ou ranger dos dentes. Pode ocorrer durante o sono (bruxismo do sono) ou durante a vigília (bruxismo em vigília). Suas consequências incluem desgaste dentário, dor muscular, disfunção temporomandibular e danos às restaurações. O tratamento envolve placas oclusais, técnicas de relaxamento e, em alguns casos, medicamentos.',
-                'isolamento absoluto': 'O isolamento absoluto é uma técnica que utiliza lençol de borracha para isolar o campo operatório da cavidade bucal. Proporciona melhor visualização, controle de umidade, proteção dos tecidos moles, prevenção de aspiração/deglutição de materiais e instrumentos, além de economia de tempo. É indicado em procedimentos restauradores, endodônticos e cimentações adesivas.'
+                'isolamento absoluto': 'O isolamento absoluto é uma técnica que utiliza lençol de borracha para isolar o campo operatório da cavidade bucal. Proporciona melhor visualização, controle de umidade, proteção dos tecidos moles, prevenção de aspiração/deglutição de materiais e instrumentos, além de economia de tempo. É indicado em procedimentos restauradores, endodônticos e cimentações adesivas.',
+                'anestesia tronco': 'A anestesia de tronco ou bloqueio regional é uma técnica que visa bloquear um nervo principal, anestesiando toda sua área de inervação. O exemplo mais comum é o bloqueio do nervo alveolar inferior, que anestesia hemimandíbula, incluindo dentes, periodonto vestibular e lingual, mucosa e dois terços anteriores da língua do lado correspondente. É indicada para procedimentos em múltiplos dentes na mesma hemiarcada.'
             };
             
             for (const [termo, explicacao] of Object.entries(termosEspecificos)) {
@@ -352,10 +402,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Adicionar eventos
     if (btnFiltrar) {
+        console.log("Adicionando evento de clique ao botão Filtrar");
         btnFiltrar.addEventListener('click', buscarQuestoes);
     }
     
     if (btnLimpar) {
+        console.log("Adicionando evento de clique ao botão Limpar");
         btnLimpar.addEventListener('click', () => {
             filtroMateria.value = '';
             filtroTema.value = '';
@@ -369,6 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (btnPerguntar) {
+        console.log("Adicionando evento de clique ao botão Perguntar");
         btnPerguntar.addEventListener('click', buscarResposta);
         
         // Adicionar evento de tecla Enter para enviar pergunta
@@ -381,6 +434,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Carregar questões iniciais
+    console.log("Carregando questões iniciais");
     setTimeout(() => {
         buscarQuestoes();
     }, 500);
+});
